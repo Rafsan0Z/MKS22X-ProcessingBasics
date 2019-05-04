@@ -39,7 +39,8 @@ class Visualizer {
     //Positive values are green and go above the line.
     float counter = 0;
     for(float height : values){
-     fill(0,200,0);
+     float paint = height*2;
+     fill(paint,100,0);
      rect(x+counter,y+100,40,height);
      counter+= 40;
     }
