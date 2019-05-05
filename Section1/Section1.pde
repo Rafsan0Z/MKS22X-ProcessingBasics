@@ -13,8 +13,8 @@ class Visualizer {
   Visualizer(float x, float y) {
     this.x = x;
     this.y = y;
-    values = new float[5];
-    speeds = new float[5];
+    values = new float[40];
+    speeds = new float[40];
     for (int i = 0; i < values.length; i++) {
       values[i] = random(-99, 99);
       speeds[i] = random(2);
@@ -39,13 +39,16 @@ class Visualizer {
     //Positive values are green and go above the line.
     float counter = 0;
     float increment = 400/values.length;
+    color orange = color(255,165,0);
+    color green = color(0,255,0);
+    color red = color(255,0,0);
+    color yellow = color(255,255,0);
     for(float Height : values){
-     float paint = Height;
-     if(paint < 100){fill(0,255,0);}
-     else if(paint < 0){fill(100,100,0);}
-     else if(paint < 50){fill(100,100,0);}
-     else if(paint < -50){fill(100,0,0);}
-     rect(x+counter,y+100-paint,increment,paint);
+     if(Height < -50){fill(red);}
+     else if (Height < 0){fill(orange);}
+     else if(Height < 50){fill(yellow);}
+     else if(Height < 100){fill(green);}
+     rect(x+counter,y+100-Height,increment,Height);
      counter+= increment;
     }
 
