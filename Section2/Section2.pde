@@ -2,7 +2,7 @@ int levels;
 color bg,fg;
 
 void setup() {
-  size(800, 600);
+  size(1000, 1000);
   levels = 0;
 }
 
@@ -47,6 +47,20 @@ void gasketH(int levels, float v1x, float v1y, float v2x, float v2y, float v3x, 
   }
 }
 
+void koch(int levels, float v1x, float v1y, float v2x, float v2y){
+ triangle(v1x,v1y,v2x,v1y,(v1x+v2x)/2,height);
+ kochH(levels,v1x,v1y,v2x,v2y);
+}
+
+void kochH(int levels, float v1x, float v1y, float v2x, float v2y){
+  if(levels == 0){return;}
+  int counter = levels;
+  while(counter > 0){
+    triangle((v1x+v2x)/3,v1y,2*(v1x+v2x)/3,v1y,(v1x+v2x)/2,v2y);
+    counter--;
+  }
+}
+
 void draw() { 
   background(50);  
   
@@ -61,7 +75,8 @@ void draw() {
 }
 
 void mouseClicked(){ 
- levels ++;  
+ levels ++;
+ if(levels >= 20){levels = 0;}
 }
 
 void keyPressed(){
